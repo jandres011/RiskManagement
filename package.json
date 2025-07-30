@@ -33,7 +33,7 @@
     "generate-entry-point": "dev-cap-tools gen-entrypoint",
     "cds-watch": "cds watch --open",
     "watch-riskmanagement.risk": "cds watch --open riskmanagement.risk/webapp/index.html?sap-ui-xx-viewCache=false",
-    "build": "npx cds build"
+    "build": "cds build"
   },
   "cds": {
     "requires": {
