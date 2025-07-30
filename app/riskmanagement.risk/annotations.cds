@@ -1,59 +1,60 @@
 using RiskManagementService as service from '../../srv/service';
+
 annotate service.Risks with @(
     UI.FieldGroup #GeneratedGroup : {
         $Type : 'UI.FieldGroupType',
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'title',
+                Label : 'Title',
                 Value : title,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'prio',
+                Label : 'Priority',
                 Value : prio,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'descr',
+                Label : 'Description',
                 Value : descr,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'impact',
+                Label : 'Impact',
                 Value : impact,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'criticality',
+                Label : 'Criticality',
                 Value : criticality,
             },
             {
                 $Type : 'UI.DataField',
-                Value : supplier_BusinessPartner,
-                Label : 'supplier_BusinessPartner',
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : miti_ID,
-                Label : 'miti_ID',
+                Value : supplier.BusinessPartner,
+                Label : 'Business Partner ID',
             },
             {
                 $Type : 'UI.DataField',
                 Value : supplier.BusinessPartnerFullName,
-                Label : 'BusinessPartnerFullName',
+                Label : 'Full Name',
             },
             {
                 $Type : 'UI.DataField',
                 Value : supplier.BusinessPartnerIsBlocked,
-                Label : 'BusinessPartnerIsBlocked',
+                Label : 'Blocked?',
             },
+            {
+                $Type : 'UI.DataField',
+                Value : miti.ID,
+                Label : 'Migration ID',
+            }
         ],
     },
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
-            ID : 'GeneratedFacet1',
+            ID : 'GeneralFacet',
             Label : 'General Information',
             Target : '@UI.FieldGroup#GeneratedGroup',
         },
@@ -61,34 +62,34 @@ annotate service.Risks with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Label : 'title',
+            Label : 'Title',
             Value : title,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'prio',
+            Label : 'Priority',
             Value : prio,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'descr',
-            Value : descr,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'impact',
+            Label : 'Impact',
             Value : impact,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'criticality',
+            Label : 'Criticality',
             Value : criticality,
         },
         {
             $Type : 'UI.DataField',
-            Value : supplier_BusinessPartner,
-            Label : 'supplier_BusinessPartner',
+            Value : supplier.BusinessPartner,
+            Label : 'Business Partner ID',
         },
+        {
+            $Type : 'UI.DataField',
+            Value : supplier.BusinessPartnerFullName,
+            Label : 'Full Name',
+        }
     ],
 );
 
@@ -99,7 +100,7 @@ annotate service.Risks with {
         Parameters : [
             {
                 $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : miti_ID,
+                LocalDataProperty : miti.ID,
                 ValueListProperty : 'ID',
             },
             {
@@ -123,36 +124,6 @@ annotate service.Risks with {
 };
 
 annotate service.Risks with {
-    a_BusinessPartner @Common.ValueList : {
-        $Type : 'Common.ValueListType',
-        CollectionPath : 'A_BusinessPartner',
-        Parameters : [
-            {
-                $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : a_BusinessPartner_BusinessPartner,
-                ValueListProperty : 'BusinessPartner',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'Customer',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'Supplier',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'BusinessPartnerCategory',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'BusinessPartnerFullName',
-            },
-        ],
-    }
-};
-
-annotate service.Risks with {
     supplier @(
         Common.ValueList : {
             $Type : 'Common.ValueListType',
@@ -160,7 +131,7 @@ annotate service.Risks with {
             Parameters : [
                 {
                     $Type : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : supplier_BusinessPartner,
+                    LocalDataProperty : supplier.BusinessPartner,
                     ValueListProperty : 'BusinessPartner',
                 },
                 {
@@ -182,5 +153,5 @@ annotate service.Risks with {
             ],
         },
         Common.ValueListWithFixedValues : true,
-)};
-
+    );
+};
